@@ -43,7 +43,7 @@ venv\Scripts\activate           # On Windows
 
 ### 3. Install dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r other/requirements.txt
 ```
 
 
