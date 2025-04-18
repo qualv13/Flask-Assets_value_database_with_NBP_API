@@ -4,10 +4,10 @@ This is a simple Flask web application that allows users to store and manage the
 
 ## 🧪 How It Works
 
-1. You add an asset (e.g. 100 USD, 200 EUR).
+1. You add an asset (e.g. Minecraft 100 USD, NVIDIA Shares 200 EUR).
 2. The app fetches **yesterday’s exchange rate** from NBP API.
 3. The value is converted to PLN and saved along with the original.
-4. You can view, update, or delete assets anytime.
+4. You can view, update, or delete assets anytime just by clicking at them on list view.
 
 ## 📌 Features
 
@@ -71,7 +71,7 @@ Go to http://127.0.0.1:5000/ to use the application.
 
 - Currency rates are retrieved using **NBP’s Table A (mid rates)**.
 - Exchange rate used is always for **yesterday** (excluding weekends/holidays).
-- Values are **not auto-updated** after they're stored.
+- Values are **not updated** after they're stored, unless new day begins and API can provide fresh data.
 - Make sure the currency code is supported by the NBP API.
 
 
