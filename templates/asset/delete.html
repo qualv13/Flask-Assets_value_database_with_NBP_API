@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Account delete confirmation</title>
+    <title>Asset delete confirmation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <ul>
     <li>
-        <div><h1>Are you sure you want to delete account {{ user.username }}?</h1></div>
+        <div><h1>Are you sure you want to delete asset {{ asset.name }}?</h1></div>
         <div style="display: flex; gap: 10px; padding-top: 10px">
-            <form class="container" method="post" action="{{ url_for('user_delete_confirm', id=user.id) }}">
-                <button type="submit">Delete account</button>
+            <form class="container" method="post" action="{{ url_for('asset_delete_confirm', id=asset.id) }}">
+                <button type="submit">Delete asset</button>
             </form>
-            <form class="container" method="post" action="{{ url_for('user_detail', id=user.id) }}">
+            <form class="container" method="post" action="{{ url_for('asset_detail', id=asset.id) }}">
                 <button type="submit">Return</button>
             </form>
         </div>

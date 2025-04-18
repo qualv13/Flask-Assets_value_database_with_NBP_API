@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Main site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-$END$
+    <div class="nav-buttons">
+        <a href="{{ url_for('asset_list') }}">Assets List</a>
+        <a href="{{ url_for('asset_create') }}">Create Asset</a>
+    </div>
+
+    <div>
+        <h2>Today's exchange rates </h2>
+        {% if responses %}
+            <ul>
+            {% for rate in responses['rates'] %}
+                <li>
+                    <a>Currency: {{ rate['currency'] }}</a>
+                    <a>Rate: {{ rate['mid'] }}</a>
+                    <a>{{ rate['code'] }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No exchange rate data available.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

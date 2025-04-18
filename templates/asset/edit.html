@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Edit {{ asset.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-$END$
+    <h2>You are editing {{ asset.name }}</h2>
+
+    <div class="container">
+        <form id='return' action="{{ url_for('asset_list') }}"></form>
+        <form id='editor' method="post" action="{{ url_for('asset_edit', id=asset.id) }}">
+            {% if get_flashed_messages() %}
+            <div class="alert" role="alert">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
+            {% endif %}
+
+            <label for="name">Asset name</label>
+            <input type="text" id="name" name="name" value='{{ asset.name }}'>
+            <label for="value">Value</label>
+            <input type="number" id="value" name="value" value='{{ asset.value }}'>
+            <label for="currency">Currency</label>
+            <input type="text" id="currency" name="currency" value='{{ asset.currency }}'>
+            <button form="editor" type="submit">Edit Asset</button>
+            <button form="return" type="submit">Return</button>
+        </form>
+    </div>
 </body>
 </html>

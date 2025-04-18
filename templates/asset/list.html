@@ -3,21 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>User List</title>
+    <title>Asset List</title>
 </head>
 <body>
-    <h1>Users</h1>
     <div class="nav-buttons">
         <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('asset_create') }}">Create Asset</a>
     </div>
-    <ul>
-        {% for user in users %}
-            <li>
-                <a href="{{ url_for('asset_detail', id=user.id) }}">{{ user.username }}</a>
-                <a>{{ user.email }}</a>
-            </li>
+
+    <h1>Assets</h1>
+
+<form method="get" action="{{ url_for('asset_list') }}">
+    <input type="text" name="search" placeholder="Type what you want to find!" value="{{ search }}">
+    <button type="submit">Search</button>
+</form>
+
+<table id = 'data' class="table-striped">
+    <thead>
+    <tr>
+        {% for col in ["name", "currency", "value"] %}
+            <th>
+                <a href="{{ url_for('asset_list', search=search, sort=col, order='asc' if order=='desc' or sort != col else 'desc') }}">
+                    {{ col.capitalize() }}
+                    {% if sort == col %}
+                        {{ "↑" if order == "asc" else "↓" }}
+                    {% endif %}
+                </a>
+            </th>
         {% endfor %}
-    </ul>
+        <th>PLN Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for asset, pln_value in assets %}
+        <tr>
+            <td><a href="{{ url_for('asset_detail', id=asset.id) }}">{{ asset.name }}</a></td>
+            <td>{{ asset.currency }}</td>
+            <td>{{ asset.value }}</td>
+            <td>{{ pln_value }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a href="{{ url_for('asset_list', page=pagination.prev_num, search=search, sort=sort, order=order) }}">Previous</a>
+        {% endif %}
+        <span>Page {{ pagination.page }} of {{ pagination.pages }}</span>
+        {% if pagination.has_next %}
+            <a href="{{ url_for('asset_list', page=pagination.next_num, search=search, sort=sort, order=order) }}">Next</a>
+        {% endif %}
+    </div>
 </body>
 </html>

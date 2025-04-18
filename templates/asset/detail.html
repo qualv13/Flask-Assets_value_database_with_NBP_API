@@ -2,33 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Account details      </title>
+    <title>Asset details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <div class="nav-buttons">
         <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('user_list') }}">User List</a>
+        <a href="{{ url_for('asset_list') }}">Asset List</a>
     </div>
 
-    <h1>User Created!</h1>
+    <h1>Asset Created!</h1>
     <ul>
     <li>
         <div>
-            {{ user.username | safe}}
-            {{ user.email | safe }}
+            <a>{{ asset.name | safe}}</a>
+            <a>{{ asset.value | safe}}</a>
+            <a>{{ asset.currency | safe}}</a>
+            <a>{{ asset.time_created | safe}}</a>
+            {% if asset.time_updated != None %}
+                <a>{{ asset.time_updated | safe }}</a>
+            {% endif %}
         </div>
         <div style="display: flex; gap: 10px; padding-top: 10px">
-            <form method="post" action="{{ url_for('user_detail', id=user.id) }}">
+            <form method="post" action="{{ url_for('asset_detail', id=asset.id) }}">
                 <button type="submit">Return</button>
             </form>
-            <form method="post" action="{{ url_for('user_delete', id=user.id) }}">
-                <button type="submit">Delete account</button>
+            <form method="post" action="{{ url_for('asset_delete', id=asset.id) }}">
+                <button type="submit">Delete asset</button>
+            </form>
+            <form action="{{ url_for('asset_edit', id=asset.id) }}">
+                <button type="submit">Edit asset</button>
             </form>
         </div>
     </li>
     </ul>
-
 </body>
 </html>
