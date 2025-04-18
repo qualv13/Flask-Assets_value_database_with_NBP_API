@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>User List</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <div class="nav-buttons">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('asset_create') }}">Create Asset</a>
+    </div>
+    <ul>
+        {% for user in users %}
+            <li>
+                <a href="{{ url_for('asset_detail', id=user.id) }}">{{ user.username }}</a>
+                <a>{{ user.email }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

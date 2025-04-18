@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account delete confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<ul>
+    <li>
+        <div><h1>Are you sure you want to delete account {{ user.username }}?</h1></div>
+        <div style="display: flex; gap: 10px; padding-top: 10px">
+            <form class="container" method="post" action="{{ url_for('user_delete_confirm', id=user.id) }}">
+                <button type="submit">Delete account</button>
+            </form>
+            <form class="container" method="post" action="{{ url_for('user_detail', id=user.id) }}">
+                <button type="submit">Return</button>
+            </form>
+        </div>
+    </li>
+</ul>
+</body>
+</html>

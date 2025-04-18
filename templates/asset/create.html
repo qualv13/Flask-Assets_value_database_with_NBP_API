@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="nav-buttons">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('assets_list') }}">Assets List</a>
+    </div>
+
+
+<form class='container' method="post" action="{{ url_for('asset_create') }}">
+    {% if get_flashed_messages() %}
+    <div class="alert" role="alert">
+        {{ get_flashed_messages() | join(" ") }}
+    </div>
+    {% endif %}
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email">
+    <button type="submit">Create Account</button>
+</form>
+
+</body>
+</html>
