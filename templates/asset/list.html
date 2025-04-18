@@ -7,8 +7,8 @@
 </head>
 <body>
     <div class="nav-buttons">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('asset_create') }}">Create Asset</a>
+        <a class="clickable" href="{{ url_for('home') }}">Home</a>
+        <a class="clickable" href="{{ url_for('asset_create') }}">Create Asset</a>
     </div>
 
     <h1>Assets</h1>
@@ -23,7 +23,7 @@
     <tr>
         {% for col in ["name", "currency", "value"] %}
             <th>
-                <a href="{{ url_for('asset_list', search=search, sort=col, order='asc' if order=='desc' or sort != col else 'desc') }}">
+                <a class="clickable" href="{{ url_for('asset_list', search=search, sort=col, order='asc' if order=='desc' or sort != col else 'desc') }}">
                     {{ col.capitalize() }}
                     {% if sort == col %}
                         {{ "↑" if order == "asc" else "↓" }}
@@ -37,7 +37,7 @@
     <tbody>
     {% for asset, pln_value in assets %}
         <tr>
-            <td><a href="{{ url_for('asset_detail', id=asset.id) }}">{{ asset.name }}</a></td>
+            <td><a class="clickable" href="{{ url_for('asset_detail', id=asset.id) }}">{{ asset.name }}</a></td>
             <td>{{ asset.currency }}</td>
             <td>{{ asset.value }}</td>
             <td>{{ pln_value }}</td>
@@ -47,11 +47,11 @@
 </table>
     <div class="pagination">
         {% if pagination.has_prev %}
-            <a href="{{ url_for('asset_list', page=pagination.prev_num, search=search, sort=sort, order=order) }}">Previous</a>
+            <a class="clickable" href="{{ url_for('asset_list', page=pagination.prev_num, search=search, sort=sort, order=order) }}">Previous</a>
         {% endif %}
         <span>Page {{ pagination.page }} of {{ pagination.pages }}</span>
         {% if pagination.has_next %}
-            <a href="{{ url_for('asset_list', page=pagination.next_num, search=search, sort=sort, order=order) }}">Next</a>
+            <a class="clickable" href="{{ url_for('asset_list', page=pagination.next_num, search=search, sort=sort, order=order) }}">Next</a>
         {% endif %}
     </div>
 </body>

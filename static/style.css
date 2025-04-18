@@ -93,7 +93,8 @@ a {
     margin-right: 10px;
 }
 
-a:hover {
+/*, a:hover*/
+.clickable:hover {
     text-decoration: underline;
 }
 
